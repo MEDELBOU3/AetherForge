@@ -1,6 +1,4 @@
-Here is the fixed Markdown file, translated into English and updated with the project name **AetherForge**.
 
-```markdown
 # AetherForge
 
 An advanced graphic design editor built with Electron, HTML, CSS, and JavaScript.
@@ -164,6 +162,7 @@ MIT License
 
 ## Author
 MOHAMED EL-BOUANANI
+
 
 
 
