@@ -1,100 +1,103 @@
-# Graphics Editor
+Here is the fixed Markdown file, translated into English and updated with the project name **AetherForge**.
 
-Ein fortgeschrittener Grafik-Design-Editor gebaut mit Electron, HTML, CSS und JavaScript.
+```markdown
+# AetherForge
+
+An advanced graphic design editor built with Electron, HTML, CSS, and JavaScript.
 
 ## Features
 
-### Zeichen-Tools
-- **Select Tool (V)** - Auswahl und Verschieben von Objekten
-- **Brush Tool (B)** - Freies Zeichnen mit einstellbarer Größe und Farbe
-- **Eraser Tool (E)** - Radiergummi zum Löschen
-- **Shape Tool (S)** - Zeichnen von Formen (Rechtecke, Kreise, Linien, Dreiecke)
-- **Text Tool (T)** - Text hinzufügen
+### Drawing Tools
+- **Select Tool (V)** - Select and move objects
+- **Brush Tool (B)** - Freehand drawing with adjustable size and color
+- **Eraser Tool (E)** - Eraser for deleting elements
+- **Shape Tool (S)** - Draw shapes (Rectangles, Circles, Lines, Triangles)
+- **Text Tool (T)** - Add text
 
-### Layer-Management
-- Mehrere Layer erstellen, löschen und duplizieren
-- Layer-Sichtbarkeit umschalten
-- Layer zusammenführen
-- Layer-Reihenfolge ändern
+### Layer Management
+- Create, delete, and duplicate multiple layers
+- Toggle layer visibility
+- Merge layers
+- Change layer order
 
-### Filter & Effekte
-- Graustufen
-- Weichzeichner
-- Helligkeit
-- Kontrast
-- Invertieren
+### Filters & Effects
+- Grayscale
+- Blur
+- Brightness
+- Contrast
+- Invert
 - Sepia
 
-### Weitere Features
-- Undo/Redo Funktionalität
+### Additional Features
+- Undo/Redo functionality
 - Zoom In/Out
-- Export zu PNG, JPG, SVG
-- Tastenkombinationen
-- Kontextmenü
-- Farbauswahl
-- Pinselgröße einstellen
+- Export to PNG, JPG, SVG
+- Keyboard shortcuts
+- Context menu
+- Color picker
+- Adjustable brush size
 
 ## Design & Styling
 
-Der Editor verfügt über ein **modernes, professionelles Dark Theme** mit:
-- 🎨 **11 alternative Farbschemata** (Dark, Light, Midnight, Cyber, Ocean, Forest, Sunset, Mono, Dracula, Nord, Tokyo Night)
-- ✨ **60+ Animationen** für ein flüssiges Benutzererlebnis
-- 📱 **Vollständig responsive** für Desktop, Tablet und Mobile
-- ♿ **Barrierefreiheit** mit High Contrast Mode und Reduced Motion Support
-- 🎯 **Touch-optimiert** für Tablets und Touch-Displays
+The editor features a **modern, professional Dark Theme** including:
 
-### CSS-Architektur
-```
+- 🎨 **11 Alternative Color Schemes** (Dark, Light, Midnight, Cyber, Ocean, Forest, Sunset, Mono, Dracula, Nord, Tokyo Night)
+- ✨ **60+ Animations** for a fluid user experience
+- 📱 **Fully Responsive** for Desktop, Tablet, and Mobile
+- ♿ **Accessibility** with High Contrast Mode and Reduced Motion Support
+- 🎯 **Touch-optimized** for tablets and touch displays
+
+### CSS Architecture
+
+```css
 css/
-├── main.css          # Basis-Styles und Variablen
-├── toolbar.css       # Toolbar & Tool-Buttons
-├── panels.css        # Layer, History, Filter Panels
-├── canvas.css        # Canvas & Zeichenfläche
-├── animations.css    # 60+ Animationen & Effekte
-├── responsive.css    # Mobile & Tablet Optimierungen
-└── themes.css        # 11 Farbschemata
+├── main.css        # Base styles and variables
+├── toolbar.css     # Toolbar & tool buttons
+├── panels.css      # Layer, history, filter panels
+├── canvas.css      # Canvas & drawing area
+├── animations.css  # 60+ animations & effects
+├── responsive.css  # Mobile & tablet optimizations
+└── themes.css      # 11 color schemes
 ```
 
 ## Installation
 
-### Voraussetzungen
-- Node.js (Version 16 oder höher)
-- npm oder yarn
+### Prerequisites
+- Node.js (Version 16 or higher)
+- npm or yarn
 
-### Schritt 1: Abhängigkeiten installieren
-
-Öffnen Sie PowerShell oder Command Prompt im Projektordner und führen Sie aus:
+### Step 1: Install Dependencies
+Open PowerShell or Command Prompt in the project folder and run:
 
 ```bash
 npm install
 ```
 
-### Schritt 2: Anwendung starten
+### Step 2: Start Application
 
 ```bash
 npm start
 ```
 
-### Schritt 3: Desktop-Anwendung erstellen
+### Step 3: Build Desktop Application
 
-#### Für Windows:
+#### For Windows:
 ```bash
 npm run build:win
 ```
 
-#### Für macOS:
+#### For macOS:
 ```bash
 npm run build:mac
 ```
 
-#### Für Linux:
+#### For Linux:
 ```bash
 npm run build:linux
 ```
+You can find the compiled application in the `dist` folder.
 
-Die fertige Anwendung finden Sie im `dist`-Ordner.
-
-## Tastenkombinationen
+## Keyboard Shortcuts
 
 ### Tools
 - **V** - Select Tool
@@ -103,71 +106,64 @@ Die fertige Anwendung finden Sie im `dist`-Ordner.
 - **S** - Shape Tool
 - **T** - Text Tool
 
-### Bearbeitung
+### Editing
 - **Ctrl + Z** - Undo
 - **Ctrl + Shift + Z** - Redo
-- **Ctrl + N** - Neues Dokument
-- **Ctrl + O** - Öffnen
-- **Ctrl + S** - Speichern
-- **Ctrl + Shift + S** - Speichern unter
+- **Ctrl + N** - New Document
+- **Ctrl + O** - Open
+- **Ctrl + S** - Save
+- **Ctrl + Shift + S** - Save As
 
-### Layer
-- **Ctrl + Shift + N** - Neuer Layer
-- **Delete** - Layer löschen
-- **Ctrl + E** - Layer zusammenführen
+### Layers
+- **Ctrl + Shift + N** - New Layer
+- **Delete** - Delete Layer
+- **Ctrl + E** - Merge Layers
 
-## Projekt-Struktur
+## Project Structure
 
-```
-graphics-editor/
+```text
+AetherForge/
 ├── src/
-│   ├── main/               # Electron Hauptprozess
-│   │   ├── main.js        # Hauptfenster-Logik
-│   │   ├── menu.js        # Menü-Konfiguration
-│   │   └── preload.js     # Preload-Skript
-│   └── renderer/          # Renderer-Prozess (UI)
-│       ├── index.html     # Haupt-HTML
-│       ├── css/           # Stylesheets
-│       ├── js/            # JavaScript-Module
-│       │   ├── tools/     # Zeichen-Tools
-│       │   ├── layers/    # Layer-Management
-│       │   ├── history/   # Undo/Redo
-│       │   ├── filters/   # Bild-Filter
-│       │   ├── export/    # Export-Funktionen
-│       │   └── ui/        # UI-Komponenten
-│       └── assets/        # Bilder & Icons
+│   ├── main/           # Electron Main Process
+│   │   ├── main.js     # Main window logic
+│   │   ├── menu.js     # Menu configuration
+│   │   └── preload.js  # Preload script
+│   └── renderer/       # Renderer Process (UI)
+│       ├── index.html  # Main HTML
+│       ├── css/        # Stylesheets
+│       ├── js/         # JavaScript Modules
+│       │   ├── tools/    # Drawing tools
+│       │   ├── layers/   # Layer management
+│       │   ├── history/  # Undo/Redo
+│       │   ├── filters/  # Image filters
+│       │   ├── export/   # Export functions
+│       │   └── ui/       # UI Components
+│       └── assets/     # Images & Icons
 ├── package.json
 └── README.md
 ```
 
-## Entwicklung
+## Development
 
-### Code-Struktur
+### Code Structure
+The application follows a modular architecture:
+- **Tools**: Each drawing tool is its own class.
+- **Layer Manager**: Manages all layers and their rendering.
+- **History Manager**: Implements Undo/Redo.
+- **Filter Manager**: Applies image filters.
+- **Export Manager**: Handles file exports.
 
-Die Anwendung folgt einem modularen Aufbau:
+### Adding Custom Tools
+1. Create a new class in `src/renderer/js/tools/`.
+2. Implement the methods: `activate()`, `deactivate()`, `onMouseDown()`, `onMouseMove()`, `onMouseUp()`.
+3. Register the tool in the `ToolManager`.
+4. Add a button in `index.html`.
 
-- **Tools**: Jedes Zeichen-Tool ist eine eigene Klasse
-- **Layer Manager**: Verwaltet alle Layer und deren Rendering
-- **History Manager**: Implementiert Undo/Redo
-- **Filter Manager**: Wendet Bildfilter an
-- **Export Manager**: Handhabt Datei-Export
-
-### Eigene Tools hinzufügen
-
-1. Erstellen Sie eine neue Klasse in `src/renderer/js/tools/`
-2. Implementieren Sie die Methoden: `activate()`, `deactivate()`, `onMouseDown()`, `onMouseMove()`, `onMouseUp()`
-3. Registrieren Sie das Tool im `ToolManager`
-4. Fügen Sie einen Button in `index.html` hinzu
-
-## Lizenz
-
+## License
 MIT License
 
-## Autor
+## Author
+MOHAMED EL-BOUANANI
 
-Ihr Name
 
-## Support
-
-Bei Fragen oder Problemen öffnen Sie bitte ein Issue auf GitHub.
 
