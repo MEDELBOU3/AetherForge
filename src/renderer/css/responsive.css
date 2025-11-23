@@ -1,0 +1,573 @@
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
+/* Large Desktop (1920px and above) */
+@media (min-width: 1920px) {
+    :root {
+        --sidebar-width: 320px;
+        --toolbar-height: 72px;
+    }
+    
+    .app-title {
+        font-size: 20px;
+    }
+    
+    .tool-btn {
+        width: 48px;
+        height: 48px;
+    }
+    
+    #main-canvas {
+        max-width: 1400px;
+        max-height: 1000px;
+    }
+}
+
+/* Desktop (1440px - 1919px) */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    :root {
+        --sidebar-width: 300px;
+    }
+}
+
+/* Standard Desktop (1200px - 1439px) */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    :root {
+        --sidebar-width: 280px;
+    }
+}
+
+/* Laptop (1024px - 1199px) */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    :root {
+        --sidebar-width: 260px;
+        --toolbar-height: 60px;
+    }
+    
+    #top-toolbar {
+        padding: 0 16px;
+        gap: 16px;
+    }
+    
+    .toolbar-tools {
+        gap: 4px;
+    }
+    
+    .tool-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .panel {
+        padding: 16px;
+    }
+    
+    .filter-buttons {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Tablet Landscape (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    :root {
+        --sidebar-width: 240px;
+        --toolbar-height: 56px;
+    }
+    
+    #top-toolbar {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 12px;
+        gap: 12px;
+    }
+    
+    .app-title {
+        font-size: 16px;
+        margin-right: 12px;
+    }
+    
+    .toolbar-tools {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .tool-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    #left-sidebar,
+    #right-sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform var(--transition-normal);
+    }
+    
+    #left-sidebar.open {
+        transform: translateX(0);
+    }
+    
+    #right-sidebar {
+        right: 0;
+        left: auto;
+        transform: translateX(100%);
+    }
+    
+    #right-sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .sidebar-toggle {
+        display: block;
+        position: fixed;
+        top: 80px;
+        padding: 12px;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-primary);
+        border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+        cursor: pointer;
+        z-index: 999;
+        transition: all var(--transition-fast);
+    }
+    
+    .sidebar-toggle.left {
+        left: 0;
+    }
+    
+    .sidebar-toggle.right {
+        right: 0;
+        border-radius: var(--border-radius-md) 0 0 var(--border-radius-md);
+    }
+    
+    .panel {
+        padding: 12px;
+    }
+    
+    .filter-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    #layers-list {
+        max-height: 250px;
+    }
+    
+    #canvas-controls {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+
+/* Tablet Portrait & Large Mobile (480px - 767px) */
+@media (min-width: 480px) and (max-width: 767px) {
+    :root {
+        --sidebar-width: 100%;
+        --toolbar-height: auto;
+        --statusbar-height: auto;
+    }
+    
+    #app {
+        flex-direction: column;
+    }
+    
+    #top-toolbar {
+        flex-direction: column;
+        height: auto;
+        padding: 12px;
+        gap: 12px;
+    }
+    
+    .app-title {
+        font-size: 16px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .toolbar-section {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .toolbar-tools {
+        width: 100%;
+        justify-content: space-around;
+    }
+    
+    .tool-btn {
+        flex: 1;
+        max-width: 50px;
+    }
+    
+    .color-picker-container,
+    .brush-size-container {
+        flex: 1;
+    }
+    
+    #main-content {
+        flex-direction: column;
+    }
+    
+    #left-sidebar,
+    #right-sidebar {
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--transition-normal);
+        border: none;
+        border-bottom: 1px solid var(--border-primary);
+    }
+    
+    #left-sidebar.open {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+    
+    #right-sidebar.open {
+        max-height: 500px;
+        overflow-y: auto;
+    }
+    
+    #canvas-wrapper {
+        min-height: 400px;
+    }
+    
+    #main-canvas {
+        max-width: 90%;
+        height: auto;
+    }
+    
+    #canvas-controls {
+        padding: 8px;
+        gap: 6px;
+    }
+    
+    #canvas-controls button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    #status-bar {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 8px;
+        gap: 8px;
+    }
+    
+    .panel {
+        padding: 12px;
+    }
+    
+    .panel h3 {
+        font-size: 11px;
+    }
+    
+    .filter-buttons {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .layer-controls {
+        flex-direction: column;
+    }
+    
+    #layers-list {
+        max-height: 200px;
+    }
+    
+    .layer-item {
+        padding: 10px;
+    }
+    
+    .layer-thumbnail {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .export-buttons {
+        gap: 8px;
+    }
+    
+    .context-menu {
+        min-width: 150px;
+    }
+}
+
+/* Mobile (320px - 479px) */
+@media (max-width: 479px) {
+    :root {
+        --sidebar-width: 100%;
+        --toolbar-height: auto;
+        --statusbar-height: auto;
+        font-size: 12px;
+    }
+    
+    #top-toolbar {
+        flex-direction: column;
+        padding: 8px;
+        gap: 8px;
+    }
+    
+    .app-title {
+        font-size: 14px;
+        margin-right: 0;
+    }
+    
+    .toolbar-section {
+        width: 100%;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .toolbar-tools {
+        width: 100%;
+        padding: 4px;
+    }
+    
+    .tool-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .color-picker-container,
+    .brush-size-container {
+        width: 100%;
+        padding: 8px;
+    }
+    
+    #color-picker {
+        width: 48px;
+        height: 36px;
+    }
+    
+    #brush-size {
+        width: 100%;
+    }
+    
+    #main-content {
+        flex-direction: column;
+    }
+    
+    #left-sidebar,
+    #right-sidebar {
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--transition-normal);
+        border: none;
+    }
+    
+    #left-sidebar.open {
+        max-height: 300px;
+        overflow-y: auto;
+        border-bottom: 1px solid var(--border-primary);
+    }
+    
+    #right-sidebar.open {
+        max-height: 400px;
+        overflow-y: auto;
+        border-top: 1px solid var(--border-primary);
+    }
+    
+    #canvas-wrapper {
+        min-height: 300px;
+        padding: 8px;
+    }
+    
+    #main-canvas {
+        max-width: 95%;
+        height: auto;
+        min-height: 250px;
+    }
+    
+    #canvas-controls {
+        flex-wrap: wrap;
+        padding: 8px;
+        gap: 4px;
+    }
+    
+    #canvas-controls button {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+    
+    #zoom-level {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+    }
+    
+    #status-bar {
+        flex-direction: column;
+        height: auto;
+        padding: 8px;
+        gap: 4px;
+        font-size: 11px;
+    }
+    
+    #status-bar span {
+        padding: 4px 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .panel {
+        padding: 10px;
+    }
+    
+    .panel h3 {
+        font-size: 11px;
+        margin-bottom: 10px;
+    }
+    
+    .filter-buttons {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+    
+    .filter-btn {
+        padding: 8px;
+        font-size: 11px;
+    }
+    
+    .layer-controls {
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .layer-controls button {
+        padding: 8px;
+        font-size: 16px;
+    }
+    
+    #layers-list {
+        max-height: 180px;
+    }
+    
+    .layer-item {
+        padding: 8px;
+    }
+    
+    .layer-thumbnail {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .layer-name {
+        font-size: 12px;
+    }
+    
+    .layer-visibility {
+        width: 28px;
+        height: 28px;
+        font-size: 16px;
+    }
+    
+    .history-controls {
+        flex-direction: column;
+    }
+    
+    #history-list {
+        max-height: 150px;
+    }
+    
+    .history-item {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+    
+    .export-buttons {
+        gap: 6px;
+    }
+    
+    .export-btn {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+    
+    .context-menu {
+        min-width: 130px;
+        font-size: 12px;
+    }
+    
+    .context-menu-item {
+        padding: 8px 12px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .tool-btn,
+    .filter-btn,
+    .layer-controls button,
+    .export-btn,
+    #canvas-controls button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .tool-btn:hover::after {
+        display: none;
+    }
+    
+    .context-menu-item {
+        min-height: 44px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    #top-toolbar,
+    #left-sidebar,
+    #right-sidebar,
+    #canvas-controls,
+    #status-bar,
+    .context-menu {
+        display: none !important;
+    }
+    
+    #canvas-wrapper {
+        background: white !important;
+    }
+    
+    #main-canvas {
+        box-shadow: none !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --border-primary: #ffffff;
+        --text-primary: #ffffff;
+        --text-secondary: #cccccc;
+    }
+    
+    .tool-btn.active,
+    .export-btn,
+    #add-layer,
+    #delete-layer {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark Mode Override (if system preference changes) */
+@media (prefers-color-scheme: light) {
+    /* App is designed for dark mode, but you can add light mode overrides here if needed */
+}

@@ -1,0 +1,292 @@
+:root {
+    --bg-dark: #1e1e1e;
+    --bg-panel: #252526;
+    --bg-input: #3c3c3c;
+    --accent: #0078d4;
+    --text-main: #cccccc;
+    --text-muted: #858585;
+    --border: #3e3e42;
+    --toolbar-width: 50px;
+    --panel-width: 280px;
+    --header-height: 30px;
+    --footer-height: 25px;
+}
+
+* { box-sizing: border-box; user-select: none; }
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Menubar */
+.menubar {
+    /* Matches your existing, just ensured z-index is high */
+    height: var(--header-height);
+    background-color: var(--bg-panel);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 13px;
+    position: relative;
+    z-index: 2000;
+}
+
+.menu-item {
+    padding: 0 12px; /* Slightly wider for better click area */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative; /* Essential for anchoring the dropdown */
+    outline: none; /* Removes browser blue outline on click */
+}
+
+.menu-item:hover {
+    background-color: #3e3e42;
+    color: white;
+}
+
+
+.menu-item:hover .dropdown, 
+.menu-item:focus-within .dropdown {
+    display: block;
+}
+
+/* Dropdown Container */
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%; /* Puts it directly below header */
+    left: 0;
+    width: auto;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    padding: 5px 0;
+    z-index: 2001;
+}
+
+/* Dropdown Items */
+.d-item {
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-between; /* Pushes shortcut to right */
+    color: var(--text-main);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.d-item:hover {
+    background-color: var(--accent);
+    color: white;
+}
+
+.d-item:hover .shortcut {
+    color: rgba(255,255,255,0.8);
+}
+
+.d-divider {
+    height: 1px;
+    background-color: var(--border);
+    margin: 5px 0;
+}
+
+.shortcut {
+    color: var(--text-muted);
+    font-size: 11px;
+    margin-left: 20px;
+}
+
+
+.toolbar {
+    width: var(--toolbar-width); /* Uses your 50px variable */
+    background-color: var(--bg-panel);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8px;
+    z-index: 10;
+}
+
+.tool {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 3px;
+    color: #a0a0a0;
+    transition: all 0.2s;
+}
+
+.tool svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* Tool Hover */
+.tool:hover {
+    background-color: #3e3e42;
+    color: #fff;
+}
+
+/* Active Tool (Selected) */
+.tool.active {
+    background-color: #3e3e42;
+    color: var(--accent); /* Uses your blue accent */
+    border-left: 2px solid var(--accent); /* The blue strip on the side */
+}
+
+.tool-divider {
+    width: 60%;
+    height: 1px;
+    background-color: var(--border);
+    margin: 8px 0;
+}
+
+/* Mini Color Swatches logic */
+.color-swatch-container {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    margin-top: 5px;
+}
+
+.swatch-bg, .swatch-fg {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--border);
+    position: absolute;
+}
+
+.swatch-bg {
+    bottom: 2px;
+    right: 2px;
+    background: #000; /* Default BG color */
+}
+
+.swatch-fg {
+    top: 2px;
+    left: 2px;
+    background: #fff; /* Default FG color */
+    z-index: 2;
+}
+.app-title { margin-left: auto; color: var(--text-muted); font-size: 12px;}
+
+/* Workspace Grid */
+.workspace {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+/* Status Bar */
+.statusbar {
+    height: var(--footer-height);
+    background-color: var(--accent);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 12px;
+}
+
+/* Allow interaction with inputs/textareas */
+input, textarea, select {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    cursor: auto !important;
+}
+
+/* Fix the Properties Panel inputs alignment */
+.prop-input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.prop-input-row input[type="range"] {
+    flex: 1; /* Slider takes remaining space */
+}
+
+.prop-input-row input[type="number"] {
+    width: 50px;
+    background: #333;
+    border: 1px solid #555;
+    color: white;
+    padding: 2px 4px;
+}
+
+/* --- CONTEXT MENU --- */
+#context-menu {
+    display: none;
+    position: absolute;
+    z-index: 10000;
+    width: 200px;
+    background-color: #252526;
+    border: 1px solid #454545;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    padding: 4px 0;
+    font-size: 13px;
+    color: #cccccc;
+}
+
+.ctx-item {
+    padding: 6px 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.1s;
+}
+
+.ctx-item:hover {
+    background-color: #094771; /* VS Code Blue */
+    color: white;
+}
+
+.ctx-item.disabled {
+    color: #666;
+    pointer-events: none;
+}
+
+.ctx-divider {
+    height: 1px;
+    background-color: #3e3e42;
+    margin: 4px 0;
+}
+
+.ctx-shortcut {
+    font-size: 11px;
+    color: #888;
+}
+.ctx-item:hover .ctx-shortcut {
+    color: #ddd;
+}
+
+.ctx-icon {
+    width: 20px;
+    text-align: center;
+    margin-right: 8px;
+    opacity: 0.7;
+}

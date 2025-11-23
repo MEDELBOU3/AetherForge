@@ -1,0 +1,49 @@
+directories:
+  output: release/
+  buildResources: build-resources
+appId: com.AetherForge.app
+productName: AetherForge
+copyright: © 2025 Mohamed El-Bouanani
+files:
+  - filter:
+      - src/**/*
+      - package.json
+extraResources:
+  - from: src/renderer/assets/
+    to: assets
+    filter:
+      - '**/*'
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+        - ia32
+    - portable
+  icon: build-resources/icon.ico
+  publisherName: Mohamed El-Bouanani
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+mac:
+  target:
+    - dmg
+    - zip
+  icon: build-resources/icon.icns
+  category: public.app-category.graphics-design
+  hardenedRuntime: true
+  gatekeeperAssess: false
+linux:
+  target:
+    - AppImage
+    - deb
+    - rpm
+  icon: build-resources/icons
+  category: Graphics
+publish:
+  provider: github
+  owner: MEDELBOU3
+  repo: AetherForge
+electronVersion: 33.4.11

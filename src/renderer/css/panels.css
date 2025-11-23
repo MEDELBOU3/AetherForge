@@ -1,0 +1,529 @@
+/* =========================================
+   1. CORE PANEL STRUCTURE
+   ========================================= */
+.panels {
+    width: var(--panel-width);
+    background-color: var(--bg-panel); /* #252526 */
+    border-left: 1px solid #1e1e1e;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: #cccccc;
+    font-size: 12px;
+}
+
+.panel-section {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #1e1e1e; /* Darker separator */
+    flex-shrink: 0;
+}
+
+.panel-section.flex-grow {
+    flex: 1;
+    min-height: 0; /* Critical for scrollable areas in flex */
+}
+
+/* =========================================
+   2. HEADERS & ACCORDIONS
+   ========================================= */
+.panel-header {
+    padding: 8px 12px;
+    background-color: #2d2d2d; /* Slightly lighter than panel bg */
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #9d9d9d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #3e3e42;
+    border-bottom: 1px solid #1e1e1e;
+    cursor: default;
+}
+
+.panel-actions i {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    opacity: 0.6;
+    transition: opacity 0.2s, color 0.2s;
+}
+
+.panel-actions i:hover {
+    opacity: 1;
+    color: #fff;
+}
+
+.panel-content {
+    padding: 12px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar for Panel Content */
+.panel-content::-webkit-scrollbar {
+    width: 10px;
+}
+.panel-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+.panel-content::-webkit-scrollbar-thumb {
+    background-color: #424242;
+    border-radius: 5px;
+    border: 2px solid var(--bg-panel);
+}
+.panel-content::-webkit-scrollbar-thumb:hover {
+    background-color: #4f4f4f;
+}
+
+/* =========================================
+   3. PROPERTIES & INPUTS
+   ========================================= */
+.prop-group {
+    margin-bottom: 12px;
+}
+
+.prop-title, .prop-label {
+    display: block;
+    font-size: 11px;
+    color: #858585; /* Muted text */
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.prop-input-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+/* Text & Number Inputs */
+input[type="text"],
+input[type="number"] {
+    background-color: #3c3c3c;
+    border: 1px solid transparent; /* Seamless look */
+    color: #f0f0f0;
+    border-radius: 2px;
+    padding: 4px 6px;
+    font-size: 12px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: var(--accent); /* #0078d4 */
+    background-color: #1e1e1e;
+}
+
+/* Select Dropdowns */
+select {
+    width: 100%;
+    background-color: #3c3c3c;
+    color: #f0f0f0;
+    border: 1px solid #3c3c3c;
+    padding: 4px 6px;
+    font-size: 12px;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+select:focus {
+    border-color: var(--accent);
+}
+
+/* Custom Range Slider */
+input[type=range] {
+    -webkit-appearance: none; /* Override default CSS styles */
+    width: 100%;
+    background: transparent;
+    margin: 5px 0;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+/* Slider Track */
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    background: #4a4a4a;
+    border-radius: 2px;
+}
+
+/* Slider Thumb */
+input[type=range]::-webkit-slider-thumb {
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    background: #d4d4d4;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -5px; /* Centers thumb on track */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    transition: background 0.2s, transform 0.2s;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+    background: var(--accent);
+    transform: scale(1.1);
+}
+
+/* =========================================
+   4. BUTTON GROUPS (Alignment, Styles)
+   ========================================= */
+.btn-group {
+    display: flex;
+    width: 100%;
+    gap: 1px; /* Gap creates the divider effect */
+    background-color: #1e1e1e; /* Divider color */
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    border: 1px solid #3c3c3c;
+}
+
+.prop-btn {
+    flex: 1;
+    background: #333333;
+    border: none;
+    color: #cccccc;
+    padding: 6px 4px;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.prop-btn:hover {
+    background-color: #454545;
+    color: #fff;
+}
+
+.prop-btn.active {
+    background-color: var(--accent); /* #0078d4 */
+    color: #ffffff;
+}
+
+/* Large Tool Buttons (Shape Creation Grid) */
+.prop-btn i { pointer-events: none; }
+.prop-btn span { pointer-events: none; margin-left: 5px; }
+
+/* =========================================
+   5. COLOR PICKER
+   ========================================= */
+.color-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 11px;
+    color: #858585;
+}
+
+.color-input-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 60px;
+    height: 22px;
+    border-radius: 3px;
+    border: 1px solid #444;
+    overflow: hidden;
+    /* Checkerboard pattern for transparency */
+    background-image:
+      linear-gradient(45deg, #ccc 25%, transparent 25%),
+      linear-gradient(-45deg, #ccc 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #ccc 75%),
+      linear-gradient(-45deg, transparent 75%, #ccc 75%);
+    background-size: 10px 10px;
+    background-color: #fff;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    border: none;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    background: none;
+    padding: 0;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0; 
+}
+input[type="color"]::-webkit-color-swatch {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.prop-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 0 4px;
+}
+
+.prop-label {
+    font-size: 11px;
+    color: #aeaeae;
+}
+
+.input-mini {
+    background: #1e1e1e;
+    border: 1px solid #3e3e42;
+    color: #cccccc;
+    width: 50px;
+    font-size: 11px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    text-align: right;
+}
+.input-mini:focus {
+    border-color: #0078d4;
+    outline: none;
+}
+
+/* =========================================
+   6. LAYERS PANEL (Advanced List)
+   ========================================= */
+.layer-list {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.layer-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-bottom: 1px solid #2a2a2a;
+    cursor: pointer;
+    font-size: 12px;
+    color: #cccccc;
+    transition: background 0.1s;
+    user-select: none;
+}
+
+.layer-item:hover {
+    background-color: #2d2d30;
+}
+
+.layer-item.active {
+    background-color: #094771; /* Visual Studio Code Selection Blue */
+    color: #ffffff;
+}
+
+/* Visibility Eye */
+.visibility-icon {
+    width: 20px;
+    text-align: center;
+    color: #858585;
+    font-size: 12px;
+    margin-right: 5px;
+}
+.layer-item.active .visibility-icon {
+    color: #fff;
+}
+.visibility-icon:hover {
+    color: #fff;
+}
+
+/* Layer Icons (Font, Image, Shape) */
+.layer-item i.fa-solid {
+    opacity: 0.7;
+}
+
+.layer-name {
+    margin-left: 5px;
+    font-family: 'Segoe UI', sans-serif;
+    flex: 1;
+}
+
+/* Lock Icon */
+.layer-item .fa-lock {
+    font-size: 10px;
+    opacity: 0.5;
+}
+
+/* Helper for Checkboxes */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #555;
+    border-radius: 2px;
+    background: #333;
+    position: relative;
+    margin-right: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type="checkbox"]:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+input[type="checkbox"]:checked::after {
+    content: '\2714'; /* Checkmark */
+    font-size: 10px;
+    color: white;
+}
+
+/* --- TABS FOR MEDIA PANEL --- */
+.panel-tabs {
+    display: flex;
+    background: #1e1e1e;
+    border-bottom: 1px solid #333;
+}
+.panel-tab {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 11px;
+    cursor: pointer;
+    color: #888;
+    border-bottom: 2px solid transparent;
+}
+.panel-tab.active {
+    color: white;
+    background: #252526;
+    border-bottom: 2px solid var(--accent);
+}
+
+/* --- ACCORDION HEADERS --- */
+.accordion-header {
+    background: #2d2d2d;
+    padding: 8px 10px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #ccc;
+    cursor: pointer;
+    border-bottom: 1px solid #3e3e42;
+    display: flex;
+    justify-content: space-between;
+}
+.accordion-header:hover { background: #383838; }
+.accordion-content {
+    padding: 10px;
+    background: #252526;
+    display: none; /* Hidden by default */
+    border-bottom: 1px solid #1e1e1e;
+}
+.accordion-content.open { display: block; }
+
+/* Filter Rows */
+.filter-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.filter-label { font-size: 11px; color: #aaa; }
+
+
+/* --- ADVANCED PROPERTIES PANEL CSS --- */
+#properties-panel {
+    padding: 10px;
+    overflow-y: auto;
+    height: 100%;
+}
+
+/* Section Headers */
+.prop-section-header {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 15px 0 8px 0;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 4px;
+}
+
+/* Grid for X/Y/W/H inputs */
+.transform-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.input-group-mini {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 2px 4px;
+}
+
+.input-label-mini {
+    color: var(--accent);
+    font-size: 10px;
+    width: 15px;
+    font-weight: bold;
+    cursor: ew-resize; /* Hint that you can drag label in future */
+}
+
+.input-mini {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    width: 100%;
+    font-size: 11px;
+    outline: none;
+    text-align: right;
+}
+
+/* Advanced Sliders */
+.slider-row {
+    margin-bottom: 8px;
+}
+.slider-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    margin-bottom: 2px;
+}
+.slider-val { color: var(--accent); }
+
+input[type="range"] {
+    width: 100%;
+    height: 4px;
+    background: #444;
+    border-radius: 2px;
+    -webkit-appearance: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: var(--text-main);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid var(--bg-panel);
+}
+input[type="range"]::-webkit-slider-thumb:hover { background: var(--accent); }
+
+/* Blending Modes Select */
+.blend-select {
+    width: 100%;
+    background: var(--bg-input);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+    padding: 4px;
+    font-size: 11px;
+}

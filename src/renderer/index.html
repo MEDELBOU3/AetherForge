@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphics Editor</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/toolbar.css">
+    <link rel="stylesheet" href="css/panels.css">
+    <link rel="stylesheet" href="css/canvas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto&family=Montserrat&family=Lobster&family=Oswald&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <!--<header class="menubar">
+            <div class="menu-item">File</div>
+            <div class="menu-item">Edit</div>
+            <div class="app-title">Fabric.js Engine</div>
+        </header>-->
+
+        <header class="menubar">
+            <!-- FILE MENU -->
+            <div class="menu-item" tabindex="0">
+                File
+                <div class="dropdown">
+                    <div class="d-item">New... <span class="shortcut">Ctrl+N</span></div>
+                    <div class="d-item">Open... <span class="shortcut">Ctrl+O</span></div>
+                    <div class="d-item">Open Recent <span class="shortcut">›</span></div>
+                    <div class="d-divider"></div>
+                    <div class="d-item">Save <span class="shortcut">Ctrl+S</span></div>
+                    <div class="d-item">Save As... <span class="shortcut">Shift+Ctrl+S</span></div>
+                    <div class="d-divider"></div>
+                    <div class="d-item">Export As PNG...</div>
+                    <div class="d-item">Export As SVG...</div>
+                    <div class="d-divider"></div>
+                    <div class="d-item">Close <span class="shortcut">Ctrl+W</span></div>
+                </div>
+            </div>
+
+            <!-- EDIT MENU -->
+            <div class="menu-item" tabindex="0">
+                Edit
+                <div class="dropdown">
+                    <div class="d-item">Undo <span class="shortcut">Ctrl+Z</span></div>
+                    <div class="d-item">Redo <span class="shortcut">Ctrl+Shift+Z</span></div>
+                    <div class="d-divider"></div>
+                    <div class="d-item">Cut <span class="shortcut">Ctrl+X</span></div>
+                    <div class="d-item">Copy <span class="shortcut">Ctrl+C</span></div>
+                    <div class="d-item">Paste <span class="shortcut">Ctrl+V</span></div>
+                    <div class="d-divider"></div>
+                    <div class="d-item">Fill... <span class="shortcut">Shift+F5</span></div>
+                    <div class="d-item">Stroke...</div>
+                    <div class="d-divider"></div>
+                    <div class="d-item">Preferences <span class="shortcut">Ctrl+K</span></div>
+                </div>
+            </div>
+
+            <!-- IMAGE MENU (Canvas/Global adjustments) -->
+            <div class="menu-item" tabindex="0">
+                Image
+                <div class="dropdown">
+                    <div class="d-item">Resize Canvas... <span class="shortcut">Alt+Ctrl+C</span></div>
+                    <div class="d-item">Image Size... <span class="shortcut">Alt+Ctrl+I</span></div>
+                    <div class="d-divider"></div>
+                    <div class="d-item">Crop</div>
+                    <div class="d-item">Trim...</div>
+                    <div class="d-divider"></div>
+                    <div class="d-item">Adjustments <span class="shortcut">›</span></div>
+                    <div class="d-item">Invert <span class="shortcut">Ctrl+I</span></div>
+                </div>
+            </div>
+
+            <!-- LAYER MENU (Object manipulation) -->
+            <div class="menu-item" tabindex="0">
+                Layer
+                <div class="dropdown">
+                    <div class="d-item">New Layer <span class="shortcut">Shift+Ctrl+N</span></div>
+                    <div class="d-item">Duplicate Layer <span class="shortcut">Ctrl+J</span></div>
+                    <div class="d-item">Delete Layer</div>
+                    <div class="d-divider"></div>
+                    <div class="d-item">Group Layers <span class="shortcut">Ctrl+G</span></div>
+                    <div class="d-item">Ungroup Layers <span class="shortcut">Shift+Ctrl+G</span></div>
+                    <div class="d-divider"></div>
+                    <div class="d-item">Arrange <span class="shortcut">›</span></div> <!-- Submenu placeholder -->
+                    <div class="d-item">Align <span class="shortcut">›</span></div>
+                    <div class="d-divider"></div>
+                    <div class="d-item">Rasterize</div>
+                </div>
+            </div>
+
+            <!-- SELECT MENU -->
+            <div class="menu-item" tabindex="0">
+                Select
+                <div class="dropdown">
+                    <div class="d-item">All <span class="shortcut">Ctrl+A</span></div>
+                    <div class="d-item">Deselect <span class="shortcut">Ctrl+D</span></div>
+                    <div class="d-item">Reselect <span class="shortcut">Shift+Ctrl+D</span></div>
+                    <div class="d-item">Inverse <span class="shortcut">Shift+Ctrl+I</span></div>
+                    <div class="d-divider"></div>
+                    <div class="d-item">Select Subject</div>
+                </div>
+            </div>
+
+            <!-- VIEW MENU -->
+            <div class="menu-item" tabindex="0">
+                View
+                <div class="dropdown">
+                    <div class="d-item">Zoom In <span class="shortcut">Ctrl++</span></div>
+                    <div class="d-item">Zoom Out <span class="shortcut">Ctrl+-</span></div>
+                    <div class="d-item">Fit on Screen <span class="shortcut">Ctrl+0</span></div>
+                    <div class="d-item">Actual Size <span class="shortcut">Ctrl+1</span></div>
+                    <div class="d-divider"></div>
+                    <div class="d-item">Show Grid <span class="shortcut">Ctrl+'</span></div>
+                    <div class="d-item">Show Rulers <span class="shortcut">Ctrl+R</span></div>
+                    <div class="d-divider"></div>
+                    <div class="d-item">Snap To <span class="shortcut">›</span></div>
+                </div>
+            </div>
+
+            <div class="app-title">Fabric.js Engine</div>
+        </header>
+
+        <div class="workspace">
+            <!-- Toolbar -->
+            <aside class="toolbar">
+                <button class="tool-btn active" data-tool="select" title="Select (V)">
+                    <img src="assets/icons/tools/select.svg" alt="">
+                </button>
+                <button class="tool-btn" data-tool="brush" title="Brush (B)">
+                    <img src="assets/icons/tools/brush.svg" alt="">
+                </button>
+
+                <!-- NEW: Single Shape Button -->
+                <button class="tool-btn" data-tool="shape" title="Shapes (U)">
+                    <img src="assets/icons/tools/shape.svg" alt="">
+                </button>
+
+                <button class="tool-btn" data-tool="media" title="Media & Filters (M)">
+                    <i class="fa-solid fa-photo-film"></i>
+                </button>
+
+                <button class="tool-btn" data-tool="text" title="Text (T)">
+                    <img src="assets/icons/tools/text.svg" alt="">
+                </button>
+                <div class="spacer" style="height: 10px;"></div>
+                <button class="tool-btn" data-tool="eraser" title="Eraser (Del)">
+                    <img src="assets/icons/tools/delete.svg" alt="">
+                </button>
+                <button class="tool-btn" id="btn-undo" title="Undo">
+                    <img src="assets/icons/editor/undo.svg" alt="">
+                </button>
+                <button class="tool-btn" id="btn-download" title="Export">
+                    <img src="assets/icons/media/download.svg" alt="">
+                </button>
+            </aside>
+            <!-- Canvas Area -->
+            <main class="canvas-container" id="canvas-wrapper">
+                <div class="canvas-viewport">
+                    <!-- Fabric needs just one canvas ID -->
+                    <canvas id="c"></canvas>
+                </div>
+            </main>
+
+            <!-- Panels -->
+            <aside class="panels">
+                <div class="panel-section">
+                    <div class="panel-header">Properties</div>
+                    <div class="panel-content" id="properties-panel"></div>
+                </div>
+                <div class="panel-section flex-grow">
+                    <div class="panel-header">Layers (Objects)</div>
+                    <div class="panel-content layer-list" id="layers-panel"></div>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="statusbar">
+            <div class="status-left">Ready</div>
+            <div class="status-right">Zoom: 100%</div>
+        </footer>
+    </div>
+
+
+    <input type="file" id="img-upload" accept="image/*" style="display: none;">
+    <input type="file" id="video-upload" accept="video/*" style="display: none;">
+
+    <script>
+        document.addEventListener('click', function (e) {
+            const menus = document.querySelectorAll('.menu-item');
+            menus.forEach(menu => {
+                if (!menu.contains(e.target)) {
+                    // This removes focus, which triggers the CSS to hide the menu
+                    menu.blur();
+                }
+            });
+        });
+    </script>
+    <!-- Load Fabric.js from node_modules or CDN if preferred -->
+    <!-- We will use the global window.fabric for simplicity if node import fails -->
+    <script src="../../node_modules/fabric/dist/fabric.js"></script>
+    <!-- Fallback if node_modules path is tricky in electron without config -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>
