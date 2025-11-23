@@ -1,0 +1,118 @@
+{
+    "name": "AetherForge",
+    "version": "1.3.0",
+    "description": "A powerful, modern desktop graphics design editor built with Electron and Fabric.js",
+    "main": "src/main/main.js",
+    "homepage": "https://github.com/MEDELBOU3/AetherForge",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MEDELBOU3/AetherForge.git"
+    },
+    "author": {
+        "name": "Mohamed El-Bouanani",
+        "email": "simo.elb.2005@gmail.com",
+        "url": "https://yourwebsite.com"
+    },
+    "license": "MIT",
+    "keywords": [
+        "AetherForge",
+        "design-tool",
+        "vector-graphics",
+        "fabricjs",
+        "electron",
+        "desktop-app"
+    ],
+    "scripts": {
+        "start": "electron . --enable-logging",
+        "dev": "electron . --dev",
+        "build": "electron-builder",
+        "build:win": "electron-builder --win --x64 --ia32",
+        "build:mac": "electron-builder --mac",
+        "build:linux": "electron-builder --linux",
+        "postinstall": "electron-builder install-app-deps",
+        "clean": "rimraf dist release",
+        "lint": "eslint src --ext .js,.ts",
+        "format": "prettier --write \"src/**/*.{js,ts,jsx,tsx,json,css,html}\""
+    },
+    "engines": {
+        "node": ">=18.18.0"
+    },
+    "devDependencies": {
+        "electron": "^33.0.0",
+        "electron-builder": "^25.1.8",
+        "eslint": "^8.57.0",
+        "prettier": "^3.2.5",
+        "rimraf": "^5.0.5"
+    },
+    "dependencies": {
+        "electron-store": "^10.0.0",
+        "electron-updater": "^6.3.0",
+        "fabric": "^6.9.0"
+    },
+    "build": {
+        "appId": "com.AetherForge.app",
+        "productName": "AetherForge",
+        "copyright": "© 2025 Mohamed El-Bouanani",
+        "directories": {
+            "output": "release/",
+            "buildResources": "build-resources"
+        },
+        "files": [
+            "src/**/*",
+            "package.json"
+        ],
+        "extraResources": [
+            {
+                "from": "src/renderer/assets/",
+                "to": "assets",
+                "filter": [
+                    "**/*"
+                ]
+            }
+        ],
+        "win": {
+            "target": [
+                {
+                    "target": "nsis",
+                    "arch": [
+                        "x64",
+                        "ia32"
+                    ]
+                },
+                "portable"
+            ],
+            "icon": "build-resources/icon.ico",
+            "publisherName": "Mohamed El-Bouanani"
+        },
+        "nsis": {
+            "oneClick": false,
+            "allowToChangeInstallationDirectory": true,
+            "createDesktopShortcut": true,
+            "createStartMenuShortcut": true
+        },
+        "mac": {
+            "target": [
+                "dmg",
+                "zip"
+            ],
+            "icon": "build-resources/icon.icns",
+            "category": "public.app-category.graphics-design",
+            "hardenedRuntime": true,
+            "gatekeeperAssess": false
+        },
+        "linux": {
+            "target": [
+                "AppImage",
+                "deb",
+                "rpm"
+            ],
+            "icon": "build-resources/icons",
+            "category": "Graphics"
+        },
+        "publish": {
+            "provider": "github",
+            "owner": "MEDELBOU3",
+            "repo": "AetherForge"
+        }
+    }
+}
