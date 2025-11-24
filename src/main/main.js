@@ -1,18 +1,21 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 
-// Global reference to prevent garbage collection
+// Global reference
 let mainWindow;
 
 function createWindow() {
   console.log('--- Creating Window ---');
   
-  // 1. Resolve paths strictly
+  // 1. Resolve paths
   const preloadPath = path.join(__dirname, 'preload.js');
   const indexPath = path.join(__dirname, '../renderer/index.html');
-
-  console.log('Preload Path:', preloadPath);
-  console.log('Index Path:', indexPath);
+  
+  // 2. Resolve Icon Path (Adjusts based on OS)
+  // We go up two levels (../../) from src/main/ to get to root
+  const iconPath = process.platform === 'win32'
+    ? path.join(__dirname, '../../build-resources/icon.ico')
+    : path.join(__dirname, '../../build-resources/icon.png');
 
   mainWindow = new BrowserWindow({
     width: 1280,
@@ -20,21 +23,19 @@ function createWindow() {
     minWidth: 800,
     minHeight: 600,
     backgroundColor: '#1e1e1e',
+    title: "Graphics Editor",
+    icon: iconPath, // <--- THIS ADDS THE ICON TO THE WINDOW/TASKBAR
     webPreferences: {
-      preload: preloadPath, // Make sure this file exists!
+      preload: preloadPath,
       contextIsolation: true,
       nodeIntegration: false,
-      sandbox: false // Temporarily disable sandbox for easier debugging
+      sandbox: false
     }
   });
 
-  // 2. Load the file and catch errors
-  mainWindow.loadFile(indexPath).catch(err => {
-      console.error('FAILED TO LOAD INDEX.HTML:', err);
-  });
+  mainWindow.loadFile(indexPath).catch(err => console.error('Failed load:', err));
   
-  // 3. Open DevTools immediately so you can see renderer errors
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools(); // Uncomment to debug
 
   mainWindow.on('closed', () => {
     mainWindow = null;
@@ -43,15 +44,11 @@ function createWindow() {
 
 app.whenReady().then(() => {
   createWindow();
-
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
 });
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    console.log('--- Quitting App ---');
-    app.quit();
-  }
+  if (process.platform !== 'darwin') app.quit();
 });
